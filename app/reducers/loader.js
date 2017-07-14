@@ -3,7 +3,8 @@ const initialState = {
   data: [],
   dataFetched: false,
   isFetching: false,
-  error: false
+  error: false,
+  isLoaded:false,
 }
 
 export default function loader(state = initialState, action = {}) {
@@ -12,8 +13,8 @@ export default function loader(state = initialState, action = {}) {
     console.log("fetching data reducer");
       return {
         ...state,
-        data: [],
-        isFetching: true
+        isFetching:true,
+        
       }
       break;
     case types.FETCHING_DATA_SUCCESS:

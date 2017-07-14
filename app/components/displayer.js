@@ -3,7 +3,7 @@ import { StyleSheet,ListView, View, Text, TouchableOpacity } from 'react-native'
 import { getPersonList, createPerson, initPersonDatabase } from '../model/Person';
 
 
-export default class Loader extends Component {
+export default class Displayer extends Component {
   constructor(props) {
     super(props);
    
@@ -23,27 +23,35 @@ export default class Loader extends Component {
 
     );
   }
- 
- 
+ _loadData(){
+   
+   let data=getPersonList();
+   return (
+      <ListView
+          dataSource={this.state.dataSource.cloneWithRows(data)}
+          renderRow={this._renderRow.bind(this)}
+          />
+   )
+  
+
+ }
   render() {
-    const { appData, fetchData } = this.props;
+    const { appData, getData } = this.props;
     return (
       <View style={styles.container} >
 
-        <Text style={{ margin: 16 }} >Load data example</Text>
-        <TouchableOpacity onPress={fetchData} style={styles.button} >
-          <Text>LoadData</Text>
-        </TouchableOpacity>
-        {appData.isFetching&&<Text>Loading..</Text>}
-         {appData.data.length?(
-            <ListView
-          dataSource={this.state.dataSource.cloneWithRows(appData.data)}
-          renderRow={this._renderRow.bind(this)}
-          />
-         )
-            :null
-         }
-       
+        <Text>ListView</Text>
+          {
+              appData.error && <Text >Error </Text>
+          }
+           {
+             appData.isLoaded? (
+                this._loadData()
+             ):null
+           }
+         
+          
+        
 
       </View>
     )
