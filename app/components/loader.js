@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet,ListView, View, Text, TouchableOpacity } from 'react-native';
-import { getPersonList, createPerson, initPersonDatabase } from '../model/Person';
-
+import { StyleSheet,ListView, View,Image,Dimensions, Text, TouchableOpacity } from 'react-native';
+import ic_user from '../media/icon/ic_user.png';
 
 export default class Loader extends Component {
   constructor(props) {
@@ -16,9 +15,10 @@ export default class Loader extends Component {
 
  _renderRow(dataSource) {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>{dataSource.name}</Text>
-        <Text style={styles.title}>{dataSource.phone}</Text>
+      <View style={styles.rowContainter}>
+        <Image source={ic_user} style={styles.imageUser} />
+        <Text style={styles.textUserName}>{dataSource.name}</Text>
+        
       </View>
 
     );
@@ -26,17 +26,15 @@ export default class Loader extends Component {
  
  
   render() {
-    const { appData, fetchData } = this.props;
+    const { appData, loadData } = this.props;
     return (
       <View style={styles.container} >
 
-        <Text style={{ margin: 16 }} >Load data example</Text>
-        <TouchableOpacity onPress={fetchData} style={styles.button} >
-          <Text>LoadData</Text>
-        </TouchableOpacity>
-        {appData.isFetching&&<Text>Loading..</Text>}
+        
+         {appData.isFetching&&<Text>Loading..</Text>}
          {appData.data.length?(
             <ListView
+          
           dataSource={this.state.dataSource.cloneWithRows(appData.data)}
           renderRow={this._renderRow.bind(this)}
           />
@@ -48,23 +46,51 @@ export default class Loader extends Component {
       </View>
     )
   }
-}
 
+
+
+  componentDidMount(){
+  
+     this.props.loadData();
+  }
+}
+const {width}=Dimensions.get('window'); 
 const styles = StyleSheet.create({
 
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    
+    margin:6,
+   
+    
 
   }
-  , button: {
-    width: 100,
-    height: 30,
-    padding: 10,
-    backgroundColor: 'lightgray',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 3
+  ,
+  rowContainter:{
+    flex:1,
+    width:width*0.8,
+    flexDirection:'row',
+    padding:10,
+    borderRadius: 8,
+    borderWidth: 1,
+    margin:6,
+    borderColor: '#d6d7da',
+
+  },
+  textUserName:{
+    fontSize:16,
+   
+    
+
+  },
+  imageUser:{
+    width:20,
+    height:20,
+    resizeMode:'cover',
+    
   }
+  
+
 })

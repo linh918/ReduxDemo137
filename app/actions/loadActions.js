@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import getPhim from '../api/phim';
-import { getPersonList, createPerson, initPersonDatabase } from '../model/Person';
+import { getPersonList, createPerson, initPersonDatabase } from '../database/Person';
 export function getData(){
  
   console.log("get data action");
@@ -28,7 +28,7 @@ export function getDataFailure(){
 }
 
 
-export function fetchData(){
+export function loadData(){
  console.log("get fetch data action");
  let error=false;
   return(dispatch)=>{

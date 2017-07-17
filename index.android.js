@@ -12,9 +12,10 @@ import {
   
   View
 } from 'react-native';
+
 import App from './app/containers/app';
 
-import LoadApp from './app/containers/loadApp';
+import Adder from './app/components/adder';
 
 export default class ReduxDemo extends Component {
   render() {
@@ -55,4 +56,4 @@ const styles = StyleSheet.create({
   },
 });
 
-AppRegistry.registerComponent('ReduxDemo', () => LoadApp);
+AppRegistry.registerComponent('ReduxDemo', () => App);
