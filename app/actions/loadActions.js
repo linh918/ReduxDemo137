@@ -1,6 +1,6 @@
 import * as types from './actionTypes';
 import getPhim from '../api/phim';
-import { getPersonList, createPerson, initPersonDatabase } from '../database/Person';
+import { getPersonList, createPerson, deletePerson } from '../database/Person';
 
 export function getData() {
 
@@ -30,13 +30,13 @@ export function getDataFailure() {
 
 
 export function loadData() {
-  console.log("get fetch data action");
+  console.log("load data action");
   let error = false;
   return (dispatch) => {
     dispatch(getData())
     console.log("after call getdata");
     let data = getPersonList();
-    if (data.length > 0) {
+    if (data.length >= 0) {
       dispatch(getDataSuccess(data));
     } else {
       dispatch(getDataFailure());
@@ -44,3 +44,39 @@ export function loadData() {
   }
 }
 
+// export function removeData() {
+//   console.log("remove data");
+//   return {
+//     type: types.REMOVE_DATA
+//   }
+// }
+
+// export function removeDataSuccess() {
+//   console.log("remove data success");
+//   return {
+//     type: types.REMOVE_DATA_SUCCESS
+//   }
+// }
+
+// export function removeDataFailure() {
+//   console.log("remove data failure");
+//   return {
+//     type: types.REMOVE_DATA_FAILURE
+//   }
+// }
+
+// export function remove(obj) {
+//   console.log("remove  action");
+//   let error = false;
+//   return (dispatch) => {
+//     dispatch(removeData())
+//     try {
+//       deletePerson(obj);
+//       dispatch(removeDataSuccess())
+//     } catch (error) {
+//       console.log(error)
+//       dispatch(removeDataFailure())
+//     }
+
+//   }
+// }

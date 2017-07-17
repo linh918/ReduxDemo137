@@ -3,23 +3,17 @@ import getPhim from '../api/phim';
 import { getPersonList, createPerson, initPersonDatabase } from '../database/Person';
 
 export function addData() {
-
   console.log("add data action");
-  
   console.log("--------------");
   return {
     type: types.ADD_DATA,
-
-
   }
 }
 
 export function addDataSuccess() {
   console.log("add data ok action");
-
   return {
     type: types.ADD_DATA_SUCCESS,
-    
   }
 }
 
@@ -33,17 +27,16 @@ export function addDataFailure() {
 
 export function add(_name) {
   console.log("add  action");
-  initPersonDatabase();
   let error = false;
   return (dispatch) => {
     dispatch(addData())
-   try {
-     createPerson(_name)
-       dispatch(addDataSuccess())
-   } catch (error) {
-     dispatch(addDataFailure())
-   }
-   
+    try {
+      createPerson(_name)
+      dispatch(addDataSuccess())
+    } catch (error) {
+      dispatch(addDataFailure())
+    }
+
   }
 }
 

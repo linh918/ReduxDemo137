@@ -18,7 +18,10 @@ export default class Adder extends Component {
     };
   }
  _add(){
-   this.props.add(this.state.username)
+   this.props.add(this.state.username);
+   this.setState({
+     username:""
+   })
  }
   render() {
     
@@ -29,6 +32,7 @@ export default class Adder extends Component {
         <TextInput
           style={{ flex: 8 }}
           placeholder="Name"
+          value={this.state.username}
           onChangeText={text => {
             this.setState({ username: text });
           }}

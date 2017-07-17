@@ -1,6 +1,5 @@
 import * as types from "../actions/actionTypes";
 const initialState = {
-
   isAdding:false,
   isAdded:false,
   error:false,

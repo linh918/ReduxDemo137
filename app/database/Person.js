@@ -17,7 +17,6 @@ ID.schema = {
   properties: {
     key: 'string',
     id: 'int',
-
   },
 
 };
@@ -30,14 +29,13 @@ let realm = new Realm({ schema: [Person, ID] });
 export function getPersonList() {
   return realm.objects('Person');
 }
-export function initPersonDatabase() {
 
+export function initPersonDatabase() {
   if (realm.objects('Person').length == 0) {
     realm.write(() => {
       realm.create('ID', {
         key: 'ID',
         id: 0
-
       });
     });
     console.log("init");
@@ -47,7 +45,7 @@ export function initPersonDatabase() {
 
 export function createPerson(_name) {
   var currentID = realm.objects('ID');
-  console.log("db add"+_name);
+  console.log("db add" + _name);
 
 
   _id = currentID[0].id + 1;
@@ -67,10 +65,17 @@ export function createPerson(_name) {
       true
     );
   });
-
-
-
 }
+
+export function deletePerson(obj) {
+  console.log("delete object")
+  console.log(obj)
+  let per = realm.objects('Person').filtered('id=' + obj.id);
+  realm.write(() => {
+    realm.delete(per)
+  })
+}
+
 export function deleteAllPerson() {
   let persons = realm.object('Person');
   realm.delete(persons);

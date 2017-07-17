@@ -9,7 +9,7 @@ const initialState = {
 export default function loader(state = initialState, action = {}) {
   switch (action.type) {
     case types.GET_DATA:
-      console.log("fetching data reducer");
+      console.log("get data reducer");
       return {
         ...state,
         isLoading: true
@@ -18,7 +18,7 @@ export default function loader(state = initialState, action = {}) {
      
   
     case types.GET_DATA_SUCCESS:
-      console.log("fetching data ok reducer");
+      console.log("get data ok reducer");
       return {
         ...state,
         data: action.data,
@@ -28,13 +28,35 @@ export default function loader(state = initialState, action = {}) {
       break;
 
     case types.GET_DATA_FAILURE:
-      console.log("fetching data fail reducer");
+      console.log("get data fail reducer");
       return {
         ...state,
         error: true,
         isLoading: false
       };
       break;
+    
+    // case types.REMOVE_DATA: {
+    //   console.log("remove data reducer");
+    //   return {
+    //     ...state
+    //   }
+    // }
+
+    // case types.REMOVE_DATA_SUCCESS: {
+    //   console.log("remove data success reducer");
+    //   return {
+    //     ...state
+    //   }
+    // }
+
+    // case types.REMOVE_DATA_FAILURE: {
+    //   console.log("remove data failure reducer");
+    //   return {
+    //     ...state,
+    //     error: true
+    //   }
+    // }
 
     default:
       return state;
