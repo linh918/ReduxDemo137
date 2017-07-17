@@ -31,7 +31,7 @@ export default class Loader extends Component {
       <View style={styles.container} >
 
         
-         {appData.isFetching&&<Text>Loading..</Text>}
+         {appData.isLoading&&<Text>Loading..</Text>}
          {appData.data.length?(
             <ListView
           

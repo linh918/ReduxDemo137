@@ -1,62 +1,49 @@
 import * as types from './actionTypes';
 import getPhim from '../api/phim';
 import { getPersonList, createPerson, initPersonDatabase } from '../database/Person';
-export function getData(){
- 
+export function getData() {
+
   console.log("get data action");
   return {
-    type: types.FETCHING_DATA,
-    
+    type: types.GET_DATA,
+
 
   }
 }
 
-export function getDataSuccess(data){
-   console.log("get data ok action");
- 
+export function getDataSuccess(data) {
+  console.log("get data ok action");
+
   return {
-    type: types.FETCHING_DATA_SUCCESS,
+    type: types.ACTION_SUCCESS,
     data,
   }
 }
 
-export function getDataFailure(){
-   console.log("get data fail action");
+export function getDataFailure() {
+  console.log("get data fail action");
   return {
-    type: types.FETCHING_DATA_FAILURE
+    type: types.ACTION_FAILURE
   }
 }
 
 
-export function loadData(){
- console.log("get fetch data action");
- let error=false;
-  return(dispatch)=>{
+export function loadData() {
+  console.log("get fetch data action");
+  let error = false;
+  return (dispatch) => {
     dispatch(getData())
     console.log("after call getdata");
-   let data= getPersonList();
-    if(data.length>0){
+    let data = getPersonList();
+    if (data.length > 0) {
       dispatch(getDataSuccess(data));
-    }else{
+    } else {
       dispatch(getDataFailure());
     }
   }
 }
 
-// export function fetchData(){
-//  console.log("get fetch data action");
-//  let error=false;
-//   return(dispatch)=>{
-//     dispatch(getData())
-//     console.log("after call getdata");
-//     getPhim()
-//      .then(([response,json])=>{
-//        dispatch(getDataSuccess(json))
-//      })
-//       .catch((err)=>{
-//         console.log(err);
-//        dispatch(getDataFailure())
-//       })
+export function addData(username) {
     
-//   }
-// }
+}
+

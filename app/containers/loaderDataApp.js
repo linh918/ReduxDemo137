@@ -5,7 +5,6 @@ import Adder from '../components/adder';
 import Loader from "../components/loader";
 import * as loaderActions from '../actions/loadActions';
 import {connect} from 'react-redux';
-import {fetchData} from '../actions/loadActions';
 
 class LoaderDataApp extends Component{
   constructor(props){

@@ -1,40 +1,38 @@
 import * as types from '../actions/actionTypes';
 const initialState = {
   data: [],
-  dataFetched: false,
-  isFetching: false,
+  isLoading: false,
   error: false,
   isLoaded:false,
 }
 
 export default function loader(state = initialState, action = {}) {
   switch (action.type) {
-    case types.FETCHING_DATA:
+    case types.GET_DATA:
     console.log("fetching data reducer");
       return {
         ...state,
-        isFetching:true,
-        
+        isLoading:true,
       }
       break;
-    case types.FETCHING_DATA_SUCCESS:
+    case types.ACTION_SUCCESS:
     
     console.log("fetching data ok reducer");
       return {
         ...state,
         data: action.data,
-        isFetching: false
+        isLoading: false
       }
     
        break;
       
-      case types.FETCHING_DATA_FAILURE:
+      case types.ACTION_FAILURE:
     
       console.log("fetching data fail reducer");
       return {
         ...state,
         error: true,
-        isFetching: false
+        isLoading: false
       }
        break;
      default:
