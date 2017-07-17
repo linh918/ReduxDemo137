@@ -1,6 +1,7 @@
 import * as types from './actionTypes';
 import getPhim from '../api/phim';
 import { getPersonList, createPerson, initPersonDatabase } from '../database/Person';
+
 export function getData() {
 
   console.log("get data action");
@@ -15,7 +16,7 @@ export function getDataSuccess(data) {
   console.log("get data ok action");
 
   return {
-    type: types.ACTION_SUCCESS,
+    type: types.GET_DATA_SUCCESS,
     data,
   }
 }
@@ -23,7 +24,7 @@ export function getDataSuccess(data) {
 export function getDataFailure() {
   console.log("get data fail action");
   return {
-    type: types.ACTION_FAILURE
+    type: types.GET_DATA_FAILURE,
   }
 }
 
@@ -41,9 +42,5 @@ export function loadData() {
       dispatch(getDataFailure());
     }
   }
-}
-
-export function addData(username) {
-    
 }
 

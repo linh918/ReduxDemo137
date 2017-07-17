@@ -45,8 +45,9 @@ export function initPersonDatabase() {
   console.log("not init");
 }
 
-export function createPerson(_name, _phone) {
+export function createPerson(_name) {
   var currentID = realm.objects('ID');
+  console.log("db add"+_name);
 
 
   _id = currentID[0].id + 1;

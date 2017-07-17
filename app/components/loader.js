@@ -26,12 +26,14 @@ export default class Loader extends Component {
  
  
   render() {
-    const { appData, loadData } = this.props;
+    console.log("render loader");
+    const { appData,addData, loadData } = this.props;
     return (
       <View style={styles.container} >
 
         
          {appData.isLoading&&<Text>Loading..</Text>}
+         {addData.isAdded && loadData}
          {appData.data.length?(
             <ListView
           
@@ -50,8 +52,8 @@ export default class Loader extends Component {
 
 
   componentDidMount(){
-  
-     this.props.loadData();
+    this.props.loadData()
+   
   }
 }
 const {width}=Dimensions.get('window'); 

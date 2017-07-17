@@ -4,21 +4,29 @@ import {View} from 'react-native';
 import Adder from '../components/adder';
 import Loader from "../components/loader";
 import * as loaderActions from '../actions/loadActions';
+
+import * as adderActions from '../actions/addActions';
 import {connect} from 'react-redux';
 
-class LoaderDataApp extends Component{
+import { getPersonList, createPerson, initPersonDatabase } from '../database/Person';
+
+class UserContainer extends Component{
   constructor(props){
     super(props);
+
   }
 
   render(){
-    const {appData,actions}=this.props;
+    const {appData,addData,loadActions,addActions}=this.props;
     return (
       <View style={{flex:1}} >
-      <Adder/>
+     <Adder  
+          {...addActions}
+     />
       <Loader 
           appData={appData}
-          {...actions}
+          addData={addData}
+          {...loadActions}
         />
        
        </View>
@@ -29,13 +37,16 @@ function mapStateToProps(state){
   console.log("mapStateTopProps");
   return{
     appData:state.loader,
+    addData:state.adder,
   };
 }
 
 function mapDispatchToProps(dispatch){
   console.log("mapDispatchToProps");
   return {
-   actions:bindActionCreators(loaderActions,dispatch)
+   loadActions:bindActionCreators(loaderActions,dispatch),
+   
+   addActions:bindActionCreators(adderActions,dispatch)
   };
 }
 
@@ -44,5 +55,5 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )
-(LoaderDataApp);
+(UserContainer);
 

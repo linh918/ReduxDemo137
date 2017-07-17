@@ -13,6 +13,7 @@ import {
   View
 } from 'react-native';
 
+
 import App from './app/containers/app';
 
 import Adder from './app/components/adder';

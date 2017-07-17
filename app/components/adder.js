@@ -17,8 +17,13 @@ export default class Adder extends Component {
       username: ""
     };
   }
-
+ _add(){
+   this.props.add(this.state.username)
+ }
   render() {
+    
+    console.log("render adder");
+    const {adder,add}=this.props;
     return (
       <View style={styles.rowContainter}>
         <TextInput
@@ -28,7 +33,7 @@ export default class Adder extends Component {
             this.setState({ username: text });
           }}
         />
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={()=>this._add()} >
           <Text>Add</Text>
         </TouchableOpacity>
         
